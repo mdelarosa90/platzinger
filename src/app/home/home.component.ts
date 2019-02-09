@@ -21,7 +21,12 @@ export class HomeComponent implements OnInit {
   }
 
   public listFriends () {
-    this.friends = this.userService.getFriends();
+     this.userService.getUsers().valueChanges().subscribe((data: User[]) => {
+      this.friends = data;
+      console.log(data);
+    }, error => {
+      console.log(error);
+    });
   }
 
 }

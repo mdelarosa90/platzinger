@@ -17,7 +17,7 @@
       </div>
       <div class="col-sm-9">
         <br />
-        <span class="friendName">Amigo 1</span> (online)
+        <span class="friendName" *ngIf = "friend">{{friend.nick}}</span> (online)
         <hr />
         <div class="vh55 overscroll pabo10" id="messageArea">
           <div>

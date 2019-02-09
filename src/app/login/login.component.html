@@ -13,15 +13,15 @@
           <h3>Iniciar Sesión</h3>
         </div>
         <p *ngIf = "operation == 'register'">Ya tienes cuenta? Haz Login <a (click)="operation = 'login'" href="javascript:0">Login</a></p>
-        <p *ngIf = "operation == 'login'">No tienes cuenta? Registrarse <a (click)="operation = 'register'" href="javascript:0">Registrarse</a></p>
+        <p *ngIf = "operation == 'login'">No tienes cuenta? Registrate <a (click)="operation = 'register'" href="javascript:0">Registrarse</a></p>
         <div class="borderedContainer">
-          <input class="form-control mb-15" type="email" placeholder="Ingrese Email">
-          <input class="form-control mb-15" type="password" placeholder="Ingrese Contraseña">
-          <input *ngIf="operation == 'register'" class="form-control mb-15" type="text" placeholder="Ingrese Nick">
+          <input class="form-control mb-15" type="email" placeholder="Ingrese Email" [(ngModel)]="email">
+          <input class="form-control mb-15" type="password" placeholder="Ingrese Contraseña" [(ngModel)]="password">
+          <input *ngIf="operation == 'register'" class="form-control mb-15" type="text" placeholder="Ingrese Nick" [(ngModel)]="nick">
         </div>
         <div class="center mt-15">
-          <a *ngIf="operation == 'login'" class="btn btnLogin" role="button">Iniciar Sesión</a>
-          <a *ngIf="operation == 'register'" class="btn btnLogin" role="button">Registrarme</a>
+          <a (click)="login()" *ngIf="operation == 'login'" class="btn btnLogin" role="button">Iniciar Sesión</a>
+          <a (click)="register()" *ngIf="operation == 'register'" class="btn btnLogin" role="button">Registrarme</a>
         </div>
       </div>
     </div>

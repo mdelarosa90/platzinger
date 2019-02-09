@@ -31,11 +31,11 @@
     
    
     <hr />
-    <b>Amigos ({{friends.length}} / {{friends.length}})</b>
+    <b *ngIf = "friends">Amigos ({{friends.length}}/{{friends.length}})</b>
     <div *ngFor = "let user of friends | search: query; let i = index" class="disblo mb-1">
       
         <span [routerLink]="['/conversation', user.uid]">
-          <img class="icon" src="assets/img/logo_live_{{user.status}}.png" alt="Estatus"/>
+          <img class="icon" src="assets/img/logo_live_online.png" alt="Estatus"/>
           <b>{{user.nick}}</b> - {{user.subnick || 'No Subnick'}}
           <small>{{user.email}}</small>
         </span>
