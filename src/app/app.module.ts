@@ -10,6 +10,7 @@ import {Routes, RouterModule} from '@angular/router';
 import { MenuComponent } from './menu/menu.component';
 import { UserService } from './services/user.service';
 import { AuthenticationService} from './services/authentication.service';
+import { ConversationService } from './services/conversation.service';
 import { SearchPipe } from './pipes/search.pipe';
 import { FormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
@@ -52,7 +53,8 @@ const appRoutes: Routes = [
   ],
   providers: [
     UserService,
-    AuthenticationService
+    AuthenticationService,
+    ConversationService,
   ],
   bootstrap: [AppComponent]
 })

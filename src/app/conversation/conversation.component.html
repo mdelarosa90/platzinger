@@ -1,4 +1,4 @@
-<div class="conversationContainer bluewhitebg">
+<div class="conversationContainer bluewhitebg" [ngClass]="{'shaker': shake}">
     <div class="row">
       <div class="col-sm-3 maxwi300">
         <div id="conversationSidebar">
@@ -20,13 +20,14 @@
         <span class="friendName" *ngIf = "friend">{{friend.nick}}</span> (online)
         <hr />
         <div class="vh55 overscroll pabo10" id="messageArea">
-          <div>
-            <span class="badge badge-pill badge-info">Hola</span>            
+          <div class="messageGroup" *ngFor = "let m of conversation">
+            <b>{{getUserNickById(m.sender)}}</b> dice: <br>
+            <span class="badge badge-pill badge-info">{{m.text}}</span>            
           </div>
-          <span class="badge badge-pill badge-secondary">¿Que más?</span>
+          <span class="badge badge-pill badge-secondary">¿Que más?</span>          
         </div>
         <div class="messageControlsContainer">
-          <textarea class="form-control" cols="30" rows="5" ></textarea>
+          <textarea class="form-control" cols="30" rows="5" [(ngModel)]= "textMessage" (keyup.enter)="sendMessage()"></textarea>
           <div id="messageToolBar">
             <div class="item">
               <img src="assets/img/icons/regular_smile.gif" class="tool">
@@ -36,16 +37,19 @@
               <img src="assets/img/icons/wink_smile.gif" class="tool">
               <i name="caret-down"></i>
             </div>
-            <div class="item" >
+            <div class="item" (click)="sendZumbido()">
               <img src="assets/img/zumbido.png" class="tool">
             </div>
   
-            <a class="btn btn-send btn-sm marri10" accept="image/*" role="button">Enviar</a>
+            <a class="btn btn-send btn-sm marri10" role="button" (click)="sendImage()">Enviar</a>
             <label class="custom-file-upload">
               <input type="file">
               <i name="image"></i> Seleccionar Imagen
-            </label>
+            </label>          
           </div>
+        </div>        
+        <div class="messageImageControl mt-2">
+            
         </div>
       </div>
     </div>
