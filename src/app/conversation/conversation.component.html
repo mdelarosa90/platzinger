@@ -22,9 +22,9 @@
         <div class="vh55 overscroll pabo10" id="messageArea">
           <div class="messageGroup" *ngFor = "let m of conversation">
             <b>{{getUserNickById(m.sender)}}</b> dice: <br>
-            <span class="badge badge-pill badge-info">{{m.text}}</span>            
-          </div>
-          <span class="badge badge-pill badge-secondary">¿Que más?</span>          
+            <span class="badge badge-pill badge-info" *ngIf = "m.type == 'text' || m.type == 'zumbido'">{{m.text}}</span>
+            <img *ngIf = "m.type == 'image'" [src]="m.text">      
+          </div>                  
         </div>
         <div class="messageControlsContainer">
           <textarea class="form-control" cols="30" rows="5" [(ngModel)]= "textMessage" (keyup.enter)="sendMessage()"></textarea>
@@ -40,16 +40,24 @@
             <div class="item" (click)="sendZumbido()">
               <img src="assets/img/zumbido.png" class="tool">
             </div>
-  
-            <a class="btn btn-send btn-sm marri10" role="button" (click)="sendImage()">Enviar</a>
-            <label class="custom-file-upload">
-              <input type="file">
-              <i name="image"></i> Seleccionar Imagen
-            </label>          
+            <label class="custom-file-upload" for="fileSend">             
+              <i name="image" ></i> Seleccionar Imagen
+            </label>
+            <input type="file" id="fileSend" (change)="fileChangeEvent($event)">
+            <button class="btn btn-send btn-sm marri10" (click)="sendImage()">Enviar</button>       
           </div>
         </div>        
-        <div class="messageImageControl mt-2">
-            
+        <div class="messageImageControl mt-2" *ngIf = "showImage === true">
+          <image-cropper
+          [imageChangedEvent]="imageChangedEvent"
+          [maintainAspectRatio]="true"
+          [aspectRatio]="1 / 1"
+          [resizeToWidth]="128"
+          format="png"
+          (imageCropped)="imageCropped($event)"
+          (imageLoaded)="imageLoaded()"
+          (loadImageFailed)="loadImageFailed()"
+          ></image-cropper>
         </div>
       </div>
     </div>

@@ -3,7 +3,6 @@ import { User } from '../interfaces/user';
 import { UserService } from '../services/user.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
-import { FirebaseStorage } from '@angular/fire';
 import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
@@ -56,7 +55,7 @@ export class ProfileComponent implements OnInit {
         });
       }).catch(error => {
         console.log(error);
-      })
+      });
     } else {
       this.userService.editUser(this.user).then(() => {
         alert('Cambios Guardados');

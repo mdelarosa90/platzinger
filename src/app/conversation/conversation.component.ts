@@ -6,6 +6,7 @@ import { ConversationService } from '../services/conversation.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-conversation',
@@ -24,6 +25,7 @@ export class ConversationComponent implements OnInit {
   picture: any = '';
   imageChangedEvent: any = '';
   croppedImage: any = '';
+  showImage: boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -100,16 +102,46 @@ export class ConversationComponent implements OnInit {
     }, 1000);
   }
 
+  public fileChangeEvent(event: any): void {
+    this.imageChangedEvent = event;
+    this.showImage = true;
+  }
+  public imageCropped(event: ImageCroppedEvent) {
+    this.croppedImage = event.base64;
+  }
+  public imageLoaded() {
+    // show cropper
+  }
+  public loadImageFailed() {
+    // show message
+  }
+
   public sendImage() {
-    const message = {
-      uid: this.conversation_uid,
-      timestamp: Date.now(),
-      text: 'Ha enviado un Mensaje',
-      sender: this.user.uid,
-      receiver: this.friend.uid,
-      type: 'image'
-    };
-    this.conversationService.createConversation(message).then(() => {});
+    if (this.croppedImage) {
+      const currentPictureId = Date.now();
+      const pictures = this.fireBaseStorage.ref('pictures/' + currentPictureId + '.jpg').putString(this.croppedImage, 'data_url');
+      pictures.then(result => {
+        this.picture = this.fireBaseStorage.ref('pictures/' + currentPictureId + '.jpg').getDownloadURL();
+        console.log (this.picture);
+        this.picture.subscribe(p => {
+        const message = {
+             uid: this.conversation_uid,
+             timestamp: Date.now(),
+             text: p,
+             sender: this.user.uid,
+             receiver: this.friend.uid,
+             type: 'image'
+           };
+           this.conversationService.createConversation(message).then(() => {}).catch(error => {
+             alert('Hubo Un Error');
+             console.log(error);
+           });
+        });
+      }).catch(error => {
+         console.log('Error Picture', error);
+      });
+     }
+     this.showImage = false;
   }
 
   public getMessages() {
@@ -141,19 +173,6 @@ export class ConversationComponent implements OnInit {
     } else {
       return this.user.nick;
     }
-  }
-
-  public fileChangeEvent(event: any): void {
-    this.imageChangedEvent = event;
-  }
-  public imageCropped(event: ImageCroppedEvent) {
-    this.croppedImage = event.base64;
-  }
-  public imageLoaded() {
-    // show cropper
-  }
-  public loadImageFailed() {
-    // show message
   }
 
 
