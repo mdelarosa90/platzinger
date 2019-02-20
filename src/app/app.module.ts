@@ -21,6 +21,10 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
 import { AuthenticationGuard } from './services/authentication.guard';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { RequestService } from './services/request.service';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { BootstrapModalModule } from 'ng2-bootstrap-modal';
+import { RequestComponent } from './modals/request/request.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -39,6 +43,7 @@ const appRoutes: Routes = [
     ProfileComponent,
     MenuComponent,
     SearchPipe,
+    RequestComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,13 +54,17 @@ const appRoutes: Routes = [
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
-    ImageCropperModule
+    ImageCropperModule,
+    NgbModule.forRoot(),
+    BootstrapModalModule.forRoot({container: document.body})
   ],
   providers: [
     UserService,
     AuthenticationService,
     ConversationService,
+    RequestService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [RequestComponent]
 })
 export class AppModule { }

@@ -1,8 +1,7 @@
 #homeContainer {
     background-image: url('/assets/img/msnbg.jpg');
     background-size: 100%;
-    background-repeat: no-repeat;
-    
+    background-repeat: no-repeat;    
 }
 
 .whiteBorderGlassBox {
@@ -21,4 +20,8 @@
 
 .icon {
     width: 30px;
+}
+
+.p-15{
+    padding: 15px;
 }
