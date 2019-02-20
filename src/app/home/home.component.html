@@ -10,7 +10,10 @@
         <div class="col" *ngIf="user">
           <b>{{user.nick}}</b>
           <div>
-            <span>{{user.status}}</span>
+            <span>
+              <img class="icon" src="assets/img/logo_live_{{user.status}}.png" alt="Estatus"/>
+              {{user.status || 'No Tiene estado definido' }}
+            </span>
             <br>
             <span> --Escribe un mensaje Personal --</span>
             <br>
@@ -28,13 +31,11 @@
             </div>
           </div>  
           <hr />
-          <b *ngIf = "friends">Amigos ({{friends.length}}/{{friends.length}})</b>
-          <div *ngFor = "let user of friends | search: query; let i = index" class="disblo mb-1">      
-              <span [routerLink]="['/conversation', user.uid]">
-                <img class="icon" src="assets/img/logo_live_online.png" alt="Estatus"/>
-                <b>{{user.nick}}</b> - {{user.subnick || 'No Subnick'}}
-                <small>{{user.email}}</small>
-              </span>       
+          <b *ngIf = "user && user.friends">Amigos ({{user.friends.length}}/{{user.friends.length}})</b>
+          <div *ngIf = "user && user.friends">          
+            <div class="disblo mb-1">
+              <app-contact class="col-md-12" *ngFor="let user of user.friends" [uid]="user"></app-contact>                
+            </div>
           </div>
       </div> 
     </div>
@@ -55,19 +56,17 @@
           <input type="email" class="form-control" placeholder="Email" [(ngModel)]="friendEmail" (keyup.enter)="sendRequest()">
       </div>      
     </div>
+    <div class="form-group row mt-2">
+      <div class="col-md-12">
+        <label class="form-control-label" for="mensaje"><b>Mensaje</b></label>
+        <textarea id="mensaje" type="text" class="form-control" placeholder="Ingresa Mensaje" [(ngModel)]="friendMessage" (keyup.enter)="sendRequest()" rows="3"></textarea>
+      </div>
+    </div>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="sendRequest()">Guardar</button>
   </div>
 </ng-template>
-
-<div>
-  <div>
-    <div>
-      <div></div>
-    </div>
-  </div>
-</div>
 
 
 

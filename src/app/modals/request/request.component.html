@@ -21,6 +21,10 @@
           </div>         
         </div>
         <div class="col-md-12 mt-2">
+          <h4>Te ha enviado un mensaje</h4>
+          <textarea id="friendMessage" row="3" disabled *ngIf="user">{{currentRequest.receiver_message}}</textarea>
+        </div>
+        <div class="col-md-12 mt-2">
             <h4>Deseas agregar esta persona?</h4>
             <input type="radio" name="addToMsn" [(ngModel)]="shouldAdd" value="yes" id="add-yes">
             <label for="add-yes">Si quiero agregarlo</label> <br>

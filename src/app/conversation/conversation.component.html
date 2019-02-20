@@ -4,13 +4,17 @@
         <div id="conversationSidebar">
           <div class="vh30">
             <div class="avatarFrameOnline">
-              <img src="{{'assets/img/generic_avatar.png'}}" class="avatarImage img-fluid">
+              <div *ngIf="friend">
+                <img [src]="friend.avatar || 'assets/img/generic_avatar.png'" class="avatarImage img-fluid">
+              </div>              
             </div>
           </div>
           <div class="vh30"></div>
           <div class="vh25">
             <div class="avatarFrameOnline">
-              <img src="{{'assets/img/generic_avatar.png'}}" class="avatarImage img-fluid">
+              <div *ngIf="user">
+                <img [src]="user.avatar || 'assets/img/generic_avatar.png'" class="avatarImage img-fluid">
+              </div>
             </div>
           </div>
         </div>

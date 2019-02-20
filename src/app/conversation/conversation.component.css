@@ -93,13 +93,13 @@
 
   .btn-send {
     background: rgba(242,248,246,1);
-background: -moz-linear-gradient(top, rgba(242,248,246,1) 0%, rgba(217,232,227,1) 50%, rgba(180,207,198,1) 51%, rgba(225,249,242,1) 100%);
-background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(242,248,246,1)), color-stop(50%, rgba(217,232,227,1)), color-stop(51%, rgba(180,207,198,1)), color-stop(100%, rgba(225,249,242,1)));
-background: -webkit-linear-gradient(top, rgba(242,248,246,1) 0%, rgba(217,232,227,1) 50%, rgba(180,207,198,1) 51%, rgba(225,249,242,1) 100%);
-background: -o-linear-gradient(top, rgba(242,248,246,1) 0%, rgba(217,232,227,1) 50%, rgba(180,207,198,1) 51%, rgba(225,249,242,1) 100%);
-background: -ms-linear-gradient(top, rgba(242,248,246,1) 0%, rgba(217,232,227,1) 50%, rgba(180,207,198,1) 51%, rgba(225,249,242,1) 100%);
-background: linear-gradient(to bottom, rgba(242,248,246,1) 0%, rgba(217,232,227,1) 50%, rgba(180,207,198,1) 51%, rgba(225,249,242,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f8f6', endColorstr='#e1f9f2', GradientType=0 );
+    background: -moz-linear-gradient(top, rgba(242,248,246,1) 0%, rgba(217,232,227,1) 50%, rgba(180,207,198,1) 51%, rgba(225,249,242,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(242,248,246,1)), color-stop(50%, rgba(217,232,227,1)), color-stop(51%, rgba(180,207,198,1)), color-stop(100%, rgba(225,249,242,1)));
+    background: -webkit-linear-gradient(top, rgba(242,248,246,1) 0%, rgba(217,232,227,1) 50%, rgba(180,207,198,1) 51%, rgba(225,249,242,1) 100%);
+    background: -o-linear-gradient(top, rgba(242,248,246,1) 0%, rgba(217,232,227,1) 50%, rgba(180,207,198,1) 51%, rgba(225,249,242,1) 100%);
+    background: -ms-linear-gradient(top, rgba(242,248,246,1) 0%, rgba(217,232,227,1) 50%, rgba(180,207,198,1) 51%, rgba(225,249,242,1) 100%);
+    background: linear-gradient(to bottom, rgba(242,248,246,1) 0%, rgba(217,232,227,1) 50%, rgba(180,207,198,1) 51%, rgba(225,249,242,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f8f6', endColorstr='#e1f9f2', GradientType=0 );
   }
 
   #messageArea {

@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   closeResult: string;
   friends: User[];
   friendEmail: string = '';
+  friendMessage: Text;
   query: string = '';
   user: User;
   constructor(
@@ -37,7 +38,10 @@ export class HomeComponent implements OnInit {
     this.authenticationService.getStatus().subscribe(status => {
       this.userService.getUserById(status.uid).valueChanges().subscribe((data: User) => {
         this.user = data;
-        console.log(this.user);
+        if (this.user.friends) {
+          this.user.friends = Object.values(this.user.friends);
+          console.log(this.user);
+        }
       }, error => {
         console.log(error);
       });
@@ -49,7 +53,6 @@ export class HomeComponent implements OnInit {
   public listFriends () {
      this.userService.getUsers().valueChanges().subscribe((data: User[]) => {
       this.friends = data;
-      console.log(data);
     }, error => {
       console.log(error);
     });
@@ -85,6 +88,7 @@ export class HomeComponent implements OnInit {
     const request = {
       timestamp: Date.now(),
       receiver_email: this.friendEmail,
+      receiver_message: this.friendMessage,
       sender: this.user.uid,
       status: 'pending'
     };
