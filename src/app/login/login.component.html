@@ -20,6 +20,7 @@
           <input *ngIf="operation == 'register'" class="form-control mb-15" type="text" placeholder="Ingrese Nick" [(ngModel)]="nick">
         </div>
         <div class="center mt-15">
+          <p class="text-danger">{{errors}}</p>
           <a (click)="login()" *ngIf="operation == 'login'" class="btn btnLogin" role="button">Iniciar Sesión</a>
           <a (click)="register()" *ngIf="operation == 'register'" class="btn btnLogin" role="button">Registrarme</a>
         </div>

@@ -5,6 +5,7 @@ import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { RequestService } from '../services/request.service';
+import { PresenceService } from '../presence.service';
 
 @Component({
   selector: 'app-home',
@@ -24,7 +25,8 @@ export class HomeComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private router: Router,
     private modalService: NgbModal,
-    private requestService: RequestService
+    private requestService: RequestService,
+    private presenceService: PresenceService
 
   ) {
   }
@@ -32,6 +34,9 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.listFriends();
     this.listUser();
+    this.authenticationService.getIdToken().subscribe(data => {
+      console.log('Token', data);
+    })
   }
 
   public listUser() {

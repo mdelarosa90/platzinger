@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   password: string = null;
   operation: string = 'login';
   nick: string = null;
+  errors: string = '';
   constructor(
     private authenticationService: AuthenticationService,
     private userService: UserService,
@@ -28,8 +29,7 @@ export class LoginComponent implements OnInit {
       this.router.navigateByUrl('/home');
       console.log(data);
     }).catch(error => {
-      alert('Ocurrió un Error');
-      console.log(error);
+      this.errors = error.message;
     });
   }
 

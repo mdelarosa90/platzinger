@@ -9,7 +9,7 @@ export class AuthenticationService {
   constructor( private angularFireAuth: AngularFireAuth) { }
 
   loginWithEmail (email: string, password: string) {
-    return this.angularFireAuth.auth.signInWithEmailAndPassword(email, password);
+    return this.angularFireAuth.auth.signInWithEmailAndPassword(email, password)
   }
 
   registerWithEmail (email: string, password: string) {
@@ -22,6 +22,10 @@ export class AuthenticationService {
 
   logOut() {
     return this.angularFireAuth.auth.signOut();
+  }
+
+  getIdToken() {
+    return this.angularFireAuth.idToken;
   }
 }
 

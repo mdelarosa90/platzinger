@@ -26,6 +26,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { RequestComponent } from './modals/request/request.component';
 import { ContactComponent } from './contact/contact.component';
+import { UserComponent } from './user/user.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -46,6 +47,7 @@ const appRoutes: Routes = [
     SearchPipe,
     RequestComponent,
     ContactComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,

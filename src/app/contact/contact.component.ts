@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { User } from '../interfaces/user';
+import { PresenceService } from '../presence.service';
 
 @Component({
   selector: 'app-contact',
@@ -14,7 +15,8 @@ export class ContactComponent implements OnInit {
   contact: User;
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private presenceService: PresenceService
   ) { }
 
   ngOnInit() {

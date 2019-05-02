@@ -13,6 +13,7 @@
             <span>
               <img class="icon" src="assets/img/logo_live_{{user.status}}.png" alt="Estatus"/>
               {{user.status || 'No Tiene estado definido' }}
+              <app-user [uid]="user.uid"></app-user>
             </span>
             <br>
             <span> --Escribe un mensaje Personal --</span>
@@ -34,7 +35,7 @@
           <b *ngIf = "user && user.friends">Amigos ({{user.friends.length}}/{{user.friends.length}})</b>
           <div *ngIf = "user && user.friends">          
             <div class="disblo mb-1">
-              <app-contact class="col-md-12" *ngFor="let user of user.friends" [uid]="user"></app-contact>                
+              <app-contact class="col-md-12" *ngFor="let user of user.friends | search:query" [uid]="user"></app-contact>                
             </div>
           </div>
       </div> 

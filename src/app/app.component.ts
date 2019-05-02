@@ -6,6 +6,7 @@ import { RequestService } from './services/request.service';
 import { User } from './interfaces/user';
 import { DialogService } from 'ng2-bootstrap-modal';
 import { RequestComponent } from './modals/request/request.component';
+import { PresenceService } from './presence.service';
 
 @Component({
   selector: 'app-root',
@@ -23,9 +24,11 @@ export class AppComponent {
     private authenticationService: AuthenticationService,
     private userService: UserService,
     private requestService: RequestService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private presenceService: PresenceService
   ) {
     this.authenticationService.getStatus().subscribe(status => {
+      if (status)
       this.userService.getUserById(status.uid).valueChanges().subscribe((data:User) => {
         this.user = data;
         this.requestService.getRequestsForEmail(this.user.email).valueChanges().subscribe((requests: any) => {
