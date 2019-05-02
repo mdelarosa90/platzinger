@@ -34,9 +34,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.listFriends();
     this.listUser();
-    this.authenticationService.getIdToken().subscribe(data => {
-      console.log('Token', data);
-    })
+    this.authenticationService.getIdToken();
   }
 
   public listUser() {
@@ -45,7 +43,6 @@ export class HomeComponent implements OnInit {
         this.user = data;
         if (this.user.friends) {
           this.user.friends = Object.values(this.user.friends);
-          console.log(this.user);
         }
       }, error => {
         console.log(error);

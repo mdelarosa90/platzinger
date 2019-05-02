@@ -20,7 +20,6 @@ export class ContactComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.uid);
     this.listContactInfo();
   }
 

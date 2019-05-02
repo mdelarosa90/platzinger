@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { AuthenticationService } from './services/authentication.service';
 import { UserService } from './services/user.service';
 import { RequestService } from './services/request.service';
@@ -7,17 +7,28 @@ import { User } from './interfaces/user';
 import { DialogService } from 'ng2-bootstrap-modal';
 import { RequestComponent } from './modals/request/request.component';
 import { PresenceService } from './presence.service';
+import { fader, slider, transformer, stepper } from './route-animations'
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  animations: [
+    // fader,
+    // slider,
+    // transformer
+    stepper
+  ]
 })
 export class AppComponent {
   title = 'platzinger';
   user: User;
   requests: any[] = [];
   mailsShown: any[] = [];
+
+  prepareRoute(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation']
+  }
 
   constructor (
     public router: Router,

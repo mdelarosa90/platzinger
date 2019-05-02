@@ -21,7 +21,7 @@
       </div>
       <div class="col-sm-9">
         <br />
-        <span class="friendName" *ngIf = "friend">{{friend.nick}}</span> {{friend.status}}
+        <span class="friendName" *ngIf = "friend">{{friend.nick}}</span> <app-user [uid]="friendId"></app-user>
         <hr />
         <div class="vh55 overscroll pabo10" id="messageArea">
           <div class="messageGroup" *ngFor = "let m of conversation">

@@ -7,6 +7,7 @@ import { AuthenticationService } from '../services/authentication.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { PresenceService } from '../presence.service';
 
 @Component({
   selector: 'app-conversation',
@@ -32,7 +33,8 @@ export class ConversationComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private userService: UserService,
     private conversationService: ConversationService,
-    private fireBaseStorage: AngularFireStorage
+    private fireBaseStorage: AngularFireStorage,
+    private presenceService: PresenceService
   ) {
     this.friendId = this.activatedRoute.snapshot.params['uid'];
   }
@@ -45,7 +47,6 @@ export class ConversationComponent implements OnInit {
   public getFriend () {
 
     this.userService.getUserById(this.friendId).valueChanges().subscribe((data: User) => {
-      console.log('user', data);
       this.friend = data;
     }, error => {
       console.log(error);
@@ -122,7 +123,6 @@ export class ConversationComponent implements OnInit {
       const pictures = this.fireBaseStorage.ref('pictures/' + currentPictureId + '.jpg').putString(this.croppedImage, 'data_url');
       pictures.then(result => {
         this.picture = this.fireBaseStorage.ref('pictures/' + currentPictureId + '.jpg').getDownloadURL();
-        console.log (this.picture);
         this.picture.subscribe(p => {
         const message = {
              uid: this.conversation_uid,

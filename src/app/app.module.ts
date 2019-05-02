@@ -6,7 +6,6 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { ConversationComponent } from './conversation/conversation.component';
 import { ProfileComponent } from './profile/profile.component';
-import {Routes, RouterModule} from '@angular/router';
 import { MenuComponent } from './menu/menu.component';
 import { UserService } from './services/user.service';
 import { AuthenticationService} from './services/authentication.service';
@@ -19,7 +18,6 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
-import { AuthenticationGuard } from './services/authentication.guard';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { RequestService } from './services/request.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -27,14 +25,9 @@ import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { RequestComponent } from './modals/request/request.component';
 import { ContactComponent } from './contact/contact.component';
 import { UserComponent } from './user/user.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { AppRoutingModule } from './app-routing.module';
 
-const appRoutes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard]},
-  {path: 'login', component: LoginComponent},
-  {path: 'conversation/:uid', component: ConversationComponent},
-  {path: 'profile', component: ProfileComponent, canActivate: [AuthenticationGuard]}
-];
 
 @NgModule({
   declarations: [
@@ -51,7 +44,8 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes),
+    BrowserAnimationsModule ,
+    AppRoutingModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
