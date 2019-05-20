@@ -27,6 +27,9 @@ import { ContactComponent } from './contact/contact.component';
 import { UserComponent } from './user/user.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule} from '@angular/common/http';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { MessageService } from './services/message.service';
 
 
 @NgModule({
@@ -52,6 +55,8 @@ import { AppRoutingModule } from './app-routing.module';
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
+    AngularEditorModule,
+    HttpClientModule,
     ImageCropperModule,
     NgbModule.forRoot(),
     BootstrapModalModule.forRoot({container: document.body})
@@ -60,7 +65,9 @@ import { AppRoutingModule } from './app-routing.module';
     UserService,
     AuthenticationService,
     ConversationService,
-    RequestService
+    RequestService,
+    MessageService
+
   ],
   bootstrap: [AppComponent],
   entryComponents: [RequestComponent]
